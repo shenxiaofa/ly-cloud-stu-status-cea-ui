@@ -1,0 +1,119 @@
+<script>
+	$(document).ready(function() {
+		$("#home1").click(function() {
+			$("body").fadeOut();
+			setTimeout("window.location.href='/#!/student-index'", 500);
+			$("body").fadeIn(800);
+		});
+		$("#home2,#home3,#btn_save").click(function() {
+			$("body").fadeOut();
+			setTimeout("javascript:history.go(-1)", 500);
+			$("body").fadeIn(800);
+		});
+	});
+</script>
+<style>
+	.modal-footer {
+		border-top: 0px #e5e5e5 solid!important;
+		padding: 10px;
+	}
+	
+	.nav-tabs>li.active>a,.nav-tabs>li.active>a:hover,.nav-tabs>li.active>a:focus {
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+		border-radius: 6px 6px 0 0;
+		border-top-color: #03a9f5;
+		border-bottom: none;
+	}
+</style>
+
+<style>
+	.modal-footer {
+		border-top: 0px #e5e5e5 solid!important;
+		padding: 10px;
+	}
+	
+	.nav-tabs>li.active>a,
+	.nav-tabs>li.active>a:hover,
+	.nav-tabs>li.active>a:focus {
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+		border-radius: 6px 6px 0 0;
+		border-top-color: #03a9f5;
+		border-bottom: none;
+	}
+	
+	.el-breadcrumb__item {
+		box-sizing: border-box;
+		width: 100%;
+	}
+	
+	.el-breadcrumb__item__inner,
+	.el-breadcrumb__item__inner a {
+		transition: color .15s linear;
+		color: #48576a;
+	}
+	
+	.el-breadcrumb {
+		font-size: 13px;
+		line-height: 1;
+		display: block;
+    	padding: 12px 0 10px 10px;
+		border-bottom: 1px solid #efefef;
+		width: 100%;
+	}
+	
+	.el-breadcrumb__separator {
+		margin: 0 8px;
+		color: #bfcbd9;
+	}
+	
+	html, body, .module {
+		width: 100%;
+		/*height: 96%;*/
+	}
+	
+	.row {
+		margin-right: 0px;
+		margin-left: 0px;
+	}
+</style>
+<div class="all">
+	<div class="right-content">
+		<div class="el-breadcrumb" style="border-bottom: 1px solid #ddd;">
+			<span class="el-breadcrumb__item">
+				<a href="javascript:void(0)"><span id="home1" class="el-breadcrumb__item__inner"><b>首页</b></span></a>
+				<span class="el-breadcrumb__separator">/</span>
+				<a href="javascript:void(0)"><span id="home2" class="el-breadcrumb__item__inner"><b>系统外成绩绑定申请</b></span></a>
+				<span class="el-breadcrumb__separator">/</span>
+				<span class="el-breadcrumb__item__inner">申请系统外成绩绑定</span>
+			</span>
+		</div>
+		<div class="modal-body">
+			<form name="schemeVersionCopyform" class="form-horizontal" novalidate>
+				<div class="form-group">
+					<div class="col-xs-6">
+						<label style="margin-left: 10px">系统外课程列表</label>
+					</div>
+					<div class="col-xs-6">
+						<label style="margin-left: 10px">计划课程列表</label>
+					</div>
+				</div>
+				<div class="form-group" style="padding: 0 10px;">
+					<div class="col-xs-6" >
+						<table id="outsideCourseTable" ui-jq="bootstrapTable" ui-options="outsideCourseTable" class="table table-responsive"></table>
+					</div>
+					<div class="col-xs-6" >
+						<table id="courseCurriculaTable" ui-jq="bootstrapTable" ui-options="courseCurriculaTable" class="table table-responsive"></table>
+					</div>
+				</div>
+		
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary" type="button" ng-click="ok(1)">办理完成</button>
+			<button class="btn btn-primary" type="button" ng-click="ok(2)">保存草稿</button>
+			<button class="btn btn-default" type="button" id="home3">返回</button>
+		</div>
+	</div>
+</div>

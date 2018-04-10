@@ -1,0 +1,181 @@
+<style>
+	.modal-footer {
+		border-top: 0px #e5e5e5 solid!important;
+		padding: 10px;
+	}
+	
+	.nav-tabs>li.active>a,.nav-tabs>li.active>a:hover,.nav-tabs>li.active>a:focus {
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+		border-radius: 6px 6px 0 0;
+		border-top-color: #03a9f5;
+		border-bottom: none;
+	}
+	
+	.el-breadcrumb__item {
+		box-sizing: border-box;
+		width: 100%;
+	}
+	
+	.el-breadcrumb__item__inner,.el-breadcrumb__item__inner a {
+		transition: color .15s linear;
+		color: #48576a;
+	}
+	
+	.el-breadcrumb {
+		font-size: 13px;
+		line-height: 1;
+		display: block;
+		padding: 12px 0 10px 10px;
+		border-bottom: 1px solid #efefef;
+		width: 100%;
+	}
+	
+	.el-breadcrumb__separator {
+		margin: 0 8px;
+		color: #bfcbd9;
+	}
+	
+	html,body,.module {
+		width: 100%;
+		/*height: 96%;*/
+	}
+	
+	.row {
+		margin-right: 0px;
+		margin-left: 0px;
+	}
+	
+	.nav {
+		border-bottom: 1px solid #afa6a6;
+	}
+	
+	.form-group label {
+		margin-left: 20px;
+	}
+	
+	.form-horizontal .form-group {
+		margin: 0;
+	}
+	
+	.form-group-one {
+		display: inline-block;
+		width: 200px;
+		margin-right: 20px;
+	}
+	
+	.form-group-tree {
+		display: inline-block;
+		width: 200px;
+	}
+	
+	.form-group-two {
+		display: inline-block;
+		width: 200px;
+		margin-right: 20px;
+	}
+</style>
+<div class="all">
+	<div class="right-content">
+		<div class="el-breadcrumb" style="border-bottom: 1px solid #ddd;">
+			<span class="el-breadcrumb__item">
+				<a ng-click="jumpToIndexPage()" href="javascript:void(0)"><span class="el-breadcrumb__item__inner"><b>首页</b></span></a>
+			<span class="el-breadcrumb__separator">/</span>
+			<span class="el-breadcrumb__item__inner">免考申请</span>
+			</span>
+		</div>
+		<uib-tabset active="activeForm">
+			<uib-tab index="1" heading="所修课程" ng-click="shClickAlready()">
+				<div class="right-content-search">
+					<div>
+						<label class="control-label search-control" ng-click="shSearchFormHideToggle()">
+							<i class="fa" ng-class="{'fa-caret-down': !shIsHideSearchForm, 'fa-caret-right': shIsHideSearchForm}"></i>&nbsp;查询条件
+						</label>
+					</div>
+					<div ng-hide="shIsHideSearchForm">
+						<form name="shpyfabzkzsh_form" class="form-horizontal search-form">
+							<div class="row">
+								<div class="form-group">
+									<label class="control-label">学年学期：</label>
+									<div class="form-group-one">
+										<select name="semesterId1" id="semesterId1" ng-model="exemptCellApply.semesterId" class="form-control" ui-jq="chosen" ui-options="{search_contains: true}">
+											<option value="">==请选择==</option>
+										</select>
+									</div>
+									<label class=" control-label">课程名称/编号：</label>
+									<div class="form-group-two">
+										<input ng-model="exemptCellApply.courseId" type="text" id="courseId" name="courseId" class="form-control" />
+									</div>
+									<label class=" control-label">开课单位：</label>
+									<div class="form-group-tree">
+										<input ng-model="exemptCellApply.deptName" type="text" id="deptName" name="deptName" class="form-control" />
+									</div>
+									<!-- 点击触发 ng-submit 事件 -->
+									<button type="submit" class="btn btn-info" ng-click="shSearchSubmit()" style="margin-left: 40px;">
+										<span class="fa fa-search refer btn-icon-padding"></span>查询
+									</button>
+									<button type="button" class="btn btn-default" ng-click="shSearchReset()" style="margin-left: 20px;">
+										<span class="fa fa-refresh reset btn-icon-padding"></span>重置
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<table id="shExemptExaminationApplyTable" ui-jq="bootstrapTable" ui-options="shExemptExaminationApplyTable" class="table table-responsive"></table>
+					</div>
+				</div>
+			</uib-tab>
+			<uib-tab index="2" heading="免考申请信息" ng-click="whClickAlready()">
+				<div class="right-content-search">
+					<div>
+						<label class="control-label search-control" ng-click="whSearchFormHideToggle()">
+							<i class="fa" ng-class="{'fa-caret-down': !whIsHideSearchForm, 'fa-caret-right': whIsHideSearchForm}"></i>&nbsp;查询条件
+						</label>
+					</div>
+					<div ng-hide="whIsHideSearchForm">
+						<form name="pyfabzkzwh_form" class="form-horizontal search-form">
+							<div class="row">
+								<div class="form-group">
+									<label class=" control-label">学年学期：</label>
+									<div class="form-group-one">
+										<select name="semesterId2" id="semesterId2" ng-model="exemptCellCheck.semesterId" class="form-control" ui-jq="chosen" ui-options="{search_contains: true}">
+											<option value="">==请选择==</option>
+										</select>
+									</div>
+									<label class=" control-label">课程名称/编号：</label>
+									<div class="form-group-two">
+										<input ng-model="exemptCellCheck.courseNameOrId" type="text" id="courseNameOrId" name="courseNameOrId" class="form-control" />
+									</div>
+									<label class=" control-label">审核状态：</label>
+									<div class="form-group-tree">
+										<select ng-model="exemptCellCheck.reviewStatus" id="reviewStatus" name="reviewStatus" ui-jq="chosen" ui-options="{search_contains: true}" class="form-control">
+											<option value="">==请选择==</option>
+											<option value="2">待审核</option>
+											<option value="1">不通过</option>
+											<option value="0">已通过</option>
+										</select>
+									</div>
+									<!-- 点击触发 ng-submit 事件 -->
+									<button type="submit" class="btn btn-info" ng-click="whSearchSubmit()" style="margin-left: 40px;">
+										<span class="fa fa-search refer btn-icon-padding"></span>查询
+									</button>
+									<button type="button" class="btn btn-default" ng-click="whSearchReset()" style="margin-left: 20px;">
+										<span class="fa fa-refresh reset btn-icon-padding"></span>重置
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<table id="whExemptExaminationApplyTable" ui-jq="bootstrapTable" ui-options="whExemptExaminationApplyTable" class="table table-responsive"></table>
+					</div>
+				</div>
+			</uib-tab>
+		</uib-tabset>
+	</div>
+</div>

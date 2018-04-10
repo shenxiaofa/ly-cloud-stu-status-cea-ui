@@ -1,0 +1,111 @@
+<script>
+	$(document).ready(function() {
+		$("#home1").click(function() {
+			$("body").fadeOut();
+			setTimeout("window.location.href='/#!/student-index'", 500);
+			$("body").fadeIn(800);
+		});
+	});
+</script>
+<style>
+	.modal-footer {
+		border-top: 0px #e5e5e5 solid!important;
+		padding: 10px;
+	}
+	
+	.nav-tabs>li.active>a,
+	.nav-tabs>li.active>a:hover,
+	.nav-tabs>li.active>a:focus {
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+		border-radius: 6px 6px 0 0;
+		border-top-color: #03a9f5;
+		border-bottom: none;
+	}
+	
+	.el-breadcrumb__item {
+		box-sizing: border-box;
+		width: 100%;
+	}
+	
+	.el-breadcrumb__item__inner,
+	.el-breadcrumb__item__inner a {
+		transition: color .15s linear;
+		color: #48576a;
+	}
+	
+	.el-breadcrumb {
+		font-size: 13px;
+		line-height: 1;
+		display: block;
+    	padding: 12px 0 10px 10px;
+		border-bottom: 1px solid #efefef;
+		width: 100%;
+	}
+	
+	.el-breadcrumb__separator {
+		margin: 0 8px;
+		color: #bfcbd9;
+	}
+	
+	html, body, .module {
+		width: 100%;
+		/*height: 96%;*/
+	}
+	
+	.row {
+		margin-right: 0px;
+		margin-left: 0px;
+	}
+</style>
+<div class="all">
+	<div class="right-content">
+		<div class="el-breadcrumb" style="border-bottom: 1px solid #ddd;">
+			<span class="el-breadcrumb__item">
+				<a ng-click="jumpToIndexPage()" id="home1" href="javascript:void(0)"><span class="el-breadcrumb__item__inner"><b>首页</b></span></a>
+				<span class="el-breadcrumb__separator">/</span>
+				<span class="el-breadcrumb__item__inner">系统外成绩申请</span>
+			</span>
+		</div>
+		<div class="right-content-search">
+			<div>
+				<label class="control-label search-control" ng-click="shSearchFormHideToggle()">
+					<i class="fa" ng-class="{'fa-caret-down': !shIsHideSearchForm, 'fa-caret-right': shIsHideSearchForm}"></i>&nbsp;查询条件
+				</label>
+			</div>
+			<div ng-hide="shIsHideSearchForm">
+				<form name="applyOtherExamForm" class="form-horizontal search-form">
+					<div class="row">
+						<div class="form-group">
+							<label class=" control-label" style="float: left;margin-left: 20px;">学年学期：</label>
+							<div class="" style="width: 200px;float: left;" >
+								<select name="semesterId" id="semesterId" ng-model="applyOtherExam.semesterId" class="form-control" ui-jq="chosen" ui-options="{search_contains: true}">
+									<option value="">==请选择==</option>
+								</select>
+							</div>
+							<!-- 点击触发 ng-submit 事件 -->
+								<button type="submit" class="btn btn-info" ng-click="shSearchSubmit()" style="margin-left: 40px;">
+									<span class="fa fa-search refer btn-icon-padding"></span>查询
+								</button>
+								<button type="button" class="btn btn-default" ng-click="shSearchReset()" style="margin-left: 20px;">
+									<span class="fa fa-refresh reset btn-icon-padding"></span>重置
+								</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div id="toolbar" class="btn-group">
+				<div>
+					<button id="btn_set" type="button" class="btn btn-default" ng-click="applyOtherExamButton()">
+						<span></span>申请外校成绩
+					</button>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<table id="examMethodExamineTable" ui-jq="bootstrapTable" ui-options="examMethodExamineTable" class="table table-responsive"></table>
+			</div>
+		</div>
+	</div>
+</div>

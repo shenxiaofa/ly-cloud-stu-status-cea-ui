@@ -1,0 +1,71 @@
+<div class="modal-header">
+	<button type="button" class="close" ng-click="close()">
+		<span>&times;</span>
+	</button>
+	<h3 class="modal-title">申请外校成绩</h3>
+</div>
+<div class="modal-body">
+	<div class="right-content-table">
+		<form name="applyOtherExamForm" class="form-horizontal search-form">
+			<div class="row">
+				<div class="form-group col-xs-6">
+					<label class="col-xs-4 control-label required">学年学期：</label>
+					<div class="col-xs-8">
+						<select name="semesterId" id="semesterId" ng-model="applyOtherExam.semesterId" ui-chosen="applyOtherExam.semesterId" ng-required="true" class="form-control" ui-jq="chosen" ui-options="{search_contains: true}">
+							<option value="">==请选择==</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group col-xs-6">
+					<label class="col-xs-4 control-label required">中文课程名称：</label>
+					<div class="col-xs-8">
+						<input type="text" name="cnCourseName" id="cnCourseName" ng-model="applyOtherExam.cnCourseName" ng-required="true" class="form-control" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-xs-6">
+					<label class="col-xs-4 control-label required">英文课程名称：</label>
+					<div class="col-xs-8">
+						<input type="text" name="enCourseName" id="enCourseName" ng-model="applyOtherExam.enCourseName" ng-required="true" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group col-xs-6">
+					<label class="col-xs-4 control-label required">课程模块：</label>
+					<div class="col-xs-8">
+						<select name="courseModular" id="courseModular" ng-model="applyOtherExam.courseModular" ui-chosen="applyOtherExam.courseModular" ng-required="true" class="form-control" ui-jq="chosen" ui-options="{search_contains: true}">
+							<option value="">==请选择==</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-xs-6">
+					<label class="col-xs-4 control-label">学时：</label>
+					<div class="col-xs-8">
+						<input type="text" name="totalHour" id="totalHour" ng-required="true" ng-model="applyOtherExam.totalHour" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group col-xs-6">
+					<label class="col-xs-4 control-label required">学分：</label>
+					<div class="col-xs-8">
+						<input type="text" name="credit" id="credit" ng-required="true" ng-model="applyOtherExam.credit" class="form-control" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-xs-6">
+					<label class="col-xs-4 control-label">成绩：</label>
+					<div class="col-xs-8">
+						<input type="text" name="score" id="score" ng-required="true" ng-model="applyOtherExam.score" class="form-control" />
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="modal-footer" style="border-top: 1px solid #ddd!important;">
+	<button id="btn_save" type="button" ng-click="ok(applyOtherExamForm, 1)" class="btn btn-info">办理完成</button>
+	<button id="btn_delete" type="button" ng-click="ok(applyOtherExamForm, 2)" class="btn btn-info">保存草稿</button>
+	<button id="home3" type="button" class="btn btn-default" ng-click="close()">关 闭</button>
+</div>

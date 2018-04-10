@@ -1,0 +1,130 @@
+<script>
+	$(document).ready(function() {
+		$("#home1").click(function() {
+			$("body").fadeOut();
+			setTimeout("window.location.href='/#!/student-index'", 500);
+			$("body").fadeIn(800);
+		});
+		$("#home2,#home3").click(function() {
+			$("body").fadeOut();
+			setTimeout("javascript:history.go(-1)", 500);
+			$("body").fadeIn(800);
+		});
+	});
+</script>
+<style>
+	.modal-footer {
+		border-top: 0px #e5e5e5 solid!important;
+		padding: 10px;
+	}
+	
+	.nav-tabs>li.active>a,
+	.nav-tabs>li.active>a:hover,
+	.nav-tabs>li.active>a:focus {
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+		border-radius: 6px 6px 0 0;
+		border-top-color: #03a9f5;
+		border-bottom: none;
+	}
+	
+	.el-breadcrumb__item {
+		box-sizing: border-box;
+		width: 100%;
+	}
+	
+	.el-breadcrumb__item__inner,
+	.el-breadcrumb__item__inner a {
+		transition: color .15s linear;
+		color: #48576a;
+	}
+	
+	.el-breadcrumb {
+		font-size: 13px;
+		line-height: 1;
+		display: block;
+    	padding: 5px 0 10px 0;
+		border-bottom: 1px solid #efefef;
+		width: 100%;
+	}
+	
+	.el-breadcrumb__separator {
+		margin: 0 8px;
+		color: #bfcbd9;
+	}
+	
+	html, body, .module {
+		width: 100%;
+		/*height: 96%;*/
+	}
+	
+	.row {
+		margin-right: 0px;
+		margin-left: 0px;
+	}
+</style>
+<div class="all">
+	<div class="right-content">
+		<div class="right-content-search" style="padding: 10px 10px 0 10px;">
+			<div class="el-breadcrumb">
+				<span class="el-breadcrumb__item">
+					<a href="javascript:void(0)"><span id="home1" class="el-breadcrumb__item__inner"><b>首页</b></span></a>
+					<span class="el-breadcrumb__separator">/</span>
+					<a href="javascript:void(0)"><span id="home2" class="el-breadcrumb__item__inner"><b>考试方式审核</b></span></a>
+					<span class="el-breadcrumb__separator">/</span>
+					<span class="el-breadcrumb__item__inner">申请成绩绑定</span>
+				</span>
+			</div>
+			<div ng-hide="shIsHideSearchForm">
+				<form name="shpyfabzkzsh_form" class="form-horizontal search-form">
+					<div class="row">
+						<div class="form-group col-xs-4">
+							<label class="col-xs-4 control-label">课程编号：</label>
+							<label class="col-xs-8 control-label" style="text-align: left;">{{applyExamBinding.courseNum}}</label>
+						</div>
+						<div class="form-group col-xs-4">
+							<label class="col-xs-4 control-label">课程名称：</label>
+							<label class="col-xs-8 control-label" style="text-align: left;">{{applyExamBinding.courseName}}</label>
+						</div>
+						<div class="form-group col-xs-4">
+							<label class="col-xs-4 control-label">开课单位：</label>
+							<label class="col-xs-8 control-label" style="text-align: left;">{{applyExamBinding.deptName}}</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-xs-4">
+							<label class="col-xs-4 control-label">学分：</label>
+							<label class="col-xs-8 control-label" style="text-align: left;">{{applyExamBinding.credit}}</label>
+						</div>
+						<div class="form-group col-xs-4">
+							<label class="col-xs-4 control-label">课程性质：</label>
+							<label class="col-xs-8 control-label" style="text-align: left;">{{applyExamBinding.courseProperty}}</label>
+						</div>
+						<div class="form-group col-xs-4">
+							<label class="col-xs-4 control-label">课程成绩：</label>
+							<label class="col-xs-8 control-label" style="text-align: left;">{{applyExamBinding.courseScore}}</label>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<table id="applyExamBindingTable" ui-jq="bootstrapTable" ui-options="applyExamBindingTable" class="table table-responsive"></table>
+			</div>
+		</div>
+		<div class="row foot-button">
+			<div class="form-group col-xs-9">
+			</div>
+			<div class="form-group col-xs-1">
+				<button id="btn_delete" type="button" ng-click="deleteBut()" class="btn btn-default">办理完成</button>
+			</div>
+			<div class="form-group col-xs-1">
+				<button id="btn_delete" type="button" ng-click="deleteBut()" class="btn btn-default">保存草稿</button>
+			</div>
+			<div class="form-group col-xs-1">
+				<button id="home3" type="button" class="btn btn-default">返回</button>
+			</div>
+		</div>
+	</div>
+</div>

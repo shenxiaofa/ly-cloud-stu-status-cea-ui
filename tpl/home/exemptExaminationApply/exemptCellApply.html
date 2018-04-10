@@ -1,0 +1,209 @@
+<style>
+	.modal-footer {
+		border-top: 1px #e5e5e5 solid!important;
+		padding: 10px;
+	}
+	
+	.nav-tabs>li.active>a,
+	.nav-tabs>li.active>a:hover,
+	.nav-tabs>li.active>a:focus {
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+		border-radius: 6px 6px 0 0;
+		border-top-color: #03a9f5;
+		border-bottom: none;
+	}
+	
+	.el-breadcrumb__item {
+		box-sizing: border-box;
+		width: 100%;
+	}
+	
+	.el-breadcrumb__item__inner,
+	.el-breadcrumb__item__inner a {
+		transition: color .15s linear;
+		color: #48576a;
+	}
+	
+	.el-breadcrumb {
+		font-size: 13px;
+		line-height: 1;
+		display: block;
+    	padding: 5px 0 10px 0;
+		border-bottom: 1px solid #efefef;
+		width: 100%;
+	}
+	
+	.el-breadcrumb__separator {
+		margin: 0 8px;
+		color: #bfcbd9;
+	}
+	
+	html, body, .module {
+		width: 100%;
+		/*height: 96%;*/
+	}
+	
+	.row {
+		margin-right: 0px;
+		margin-left: 0px;
+	}
+	
+	.modal_t {
+		background: #e4e4e4;
+	}
+	
+	/**** 对input里面的按钮样式进行修改 ****/
+	.input-file{
+	    display: inline-block;
+	    position: relative;
+	    overflow: hidden;
+	    text-align: center;
+	    width: auto;
+	    background-color: #03a9f4;
+	    border: solid 1px #03a9f4;
+	    border-radius: 4px;
+	    padding: 5px 10px;
+	    font-size: 12px;
+	    font-weight: normal;
+	    line-height: 18px;
+	    color:#fff;
+	    text-decoration: none;
+	}
+	
+	.input-file input[type="file"] {
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    font-size: 14px;
+	    background-color: #fff;
+	    transform: translate(0px, 0px) scale(4);
+	    height: 40px;
+	    opacity: 0;
+	    filter: alpha(opacity=0);
+	}
+	
+	.input-file:hover {
+	    background: #AADFFD;
+	    border-color: #78C3F3;
+	    color: #004974;
+	    text-decoration: none;
+	}
+</style>
+<div class="right-content">
+	<div class="modal_t" style="padding: 10px;position: relative;">
+		<span class="el-breadcrumb__item__inner">申请免考</span>
+		<span style="cursor: pointer;position: absolute;right: 15px;top: 10px;" ng-click="close(fileId)">X</span>
+	</div>
+	<div class="right-content-search">
+		<div ng-hide="shIsHideSearchForm">
+			<form name="exemptExaminationApplyForm" class="form-horizontal search-form">
+				<div class="row">
+					<div class="col-xs-4">
+						<label class="col-xs-6" style="text-align: right;padding: 5px;">学号：</label>
+						<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellApply.studentNum}}</label>
+					</div>
+					<div class="col-xs-4">
+						<label class="col-xs-6" style="text-align: right;padding: 5px;">姓名：</label>
+						<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellApply.studentName}}</label>
+					</div>
+					<div class="col-xs-4">
+						<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">学生所在院系：</label>
+						<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellApply.deptName}}</label>
+					</div>
+				</div>
+				<div class="row" style="padding-top: 15px;">
+					<div class="col-xs-4">
+						<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">班级：</label>
+						<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellApply.className}}</label>
+					</div>
+					<div class="col-xs-4">
+						<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">申请免考课程：</label>
+						<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellApply.courseName}}</label>
+					</div>
+					<div class="col-xs-4">
+						<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">开课单位：</label>
+						<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellApply.deptName}}</label>
+					</div>
+				</div>
+
+				<div class="row" style="padding-top: 15px;">
+					<div class="col-xs-4">
+						<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">学分：</label>
+						<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellApply.credit}}</label>
+					</div>
+					<div class="col-xs-4">
+						<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">课程性质：</label>
+						<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellApply.courseProperty}}</label>
+					</div>
+					<div class="col-xs-4">
+						<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">任课教师：</label>
+						<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellApply.teacherName}}</label>
+					</div>
+				</div>
+				<div class="row" style="padding-top: 15px;">
+					<div class="col-xs-4">
+						<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">上课时间：</label>
+						<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellApply.classTime}}</label>
+					</div>
+					<div class="col-xs-4">
+						<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">考核方式：</label>
+						<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellApply.examMethod}}</label>
+					</div>
+					<div class="col-xs-4">
+					</div>
+				</div>
+				<div class="row" style="padding-top: 15px;">
+					<div class="col-xs-12">
+						<label class="col-xs-2 control-label" style="text-align: right;padding: 5px 15px 5px 5px;" required>附件：</label>
+						<div class="col-xs-6" style="padding: 0px;">
+							<a class="input-file" href="javascript:;">
+								 + 选择文件<input type="file" nv-file-select uploader="uploader" class="form-control"/>
+							</a>
+						</div>
+					</div>
+		        </div>
+				<div class="row" style="padding-top: 15px;" ng-repeat="item in uploader.queue" ng-show="showProgress"><!--  ng-show="uploader.getNotUploadedItems().length" -->
+					<div class="col-xs-12">
+						<label class="col-xs-2 control-label" style="text-align: right;padding: 5px 15px 5px 5px;" required></label>
+						<label class="col-xs-3 control-label" style="text-align: left;">
+							{{item.file.name}} 
+							<font color="#8e877d">({{item.file.size/1024/1024|number:2}} MB)</font>
+						</label>
+						<div class="col-xs-3 control-label" style="padding-top: 0px;"><!--  ng-show="showProgress" -->
+							<div class="progress" style="margin: 5px 0 0 0;">
+                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                            </div>
+						</div>
+                        <button type="button" class="col-xs-1 btn btn-danger btn-xs" ng-click="deleteAttachment(fileId)">	<!--  ng-click="uploader.clearQueue()" -->
+                            <span class="glyphicon glyphicon-trash"></span> 删除
+                        </button>
+					</div>
+		        </div>
+		        <div class="row" style="padding-top: 15px;">
+					<div class="col-xs-12">
+	        			<label class="col-xs-2 control-label" style="text-align: right;padding: 5px 15px 5px 5px;" required>申请免考事由：</label>
+						<div class="col-xs-9" style="padding: 0px;width: 83%;float: left;">
+							<textarea class="form-control" rows="5" ng-model="exemptCellApply.reason" ng-required="true" style="border-radius: 3px;resize: none;overflow-y: scroll;"></textarea>
+						</div>
+					</div>
+		        </div>
+		        <div class="form-group " style="padding: 15px 0 0 28px;margin: 10px; border-top: 1px solid #ccc;">
+		            <div style="font-size: 10px;">
+				        <span style="color: red;font-size: 15px;"> 免考申请须知：</span><br/>
+				            &nbsp;&nbsp;&nbsp;&nbsp;1、     免考申请必须在考试开始前办理。<br/>
+				            &nbsp;&nbsp;&nbsp;&nbsp;2、     缺课超过1/3时，不予安排免考。<br/>
+				            &nbsp;&nbsp;&nbsp;&nbsp;3、     免考一般安排在下一学期。<br/>
+				            &nbsp;&nbsp;&nbsp;&nbsp;4、     本表由任课教师签字，学生所在系及教务处签署同意意见并盖章方可有效。<br/>
+				            &nbsp;&nbsp;&nbsp;&nbsp;5、     本表一式三份，由考试中心、任课教师及学生各保留一份。<br/>
+				            &nbsp;&nbsp;&nbsp;&nbsp;6、     教务处下学期免考安排通知公布后，根据本人免考课程查询考试安排。如未安排免考，持本申请表于考试前咨询教务处成绩管理处。
+				    </div>
+		        </div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" type="button" ng-click="ok(exemptExaminationApplyForm)">办理完成</button>
+	<button class="btn btn-default" type="button" ng-click="close(fileId)">关闭</button>
+</div>

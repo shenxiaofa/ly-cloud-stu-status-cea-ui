@@ -1,0 +1,30 @@
+{
+	"total": "1",
+	"rows": [
+		{
+			"type": "公必",
+			"gradePoint": "4.3",
+			"credit": "2.0",
+			"modularCredit": "7",
+			"totalCredit": "9"
+		}, {
+			"type": "专必",
+			"gradePoint": "3.7",
+			"credit": "1.0",
+			"modularCredit": "6",
+			"totalCredit": "9"
+		}, {
+			"type": "公选",
+			"gradePoint": "3.8",
+			"credit": "3.0",
+			"modularCredit": "6",
+			"totalCredit": "9"
+		}, {
+			"type": "专选",
+			"gradePoint": "3.99",
+			"credit": "3.0",
+			"modularCredit": "6",
+			"totalCredit": "9"
+		}
+	]
+}

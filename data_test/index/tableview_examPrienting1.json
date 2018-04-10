@@ -1,0 +1,30 @@
+{
+	"total": "1",
+	"rows": [
+		{
+			"courseName": "马克思主义基本原理",
+			"courseType": "必修",
+			"teacherName": "周建明",
+			"credit": "2.0",
+			"score": "95",
+			"gradePoint": "4.3",
+			"ranking": "45/155"
+		}, {
+			"courseName": "商务英语(大学英语)",
+			"courseType": "必修",
+			"teacherName": "黄晓敏",
+			"credit": "1.0",
+			"score": "93",
+			"gradePoint": "3.7",
+			"ranking": "89/100"
+		}, {
+			"courseName": "清洁生产与环境材料(核心通识)",
+			"courseType": "必修",
+			"teacherName": "林萌萌",
+			"credit": "3.0",
+			"score": "94",
+			"gradePoint": "3.8",
+			"ranking": "25/458"
+		}
+	]
+}

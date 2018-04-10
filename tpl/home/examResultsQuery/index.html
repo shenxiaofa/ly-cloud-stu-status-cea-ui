@@ -1,0 +1,222 @@
+<script>
+	$(document).ready(function() {
+		$("#home1").click(function() {
+			$("body").fadeOut();
+			setTimeout("window.location.href='/#!/student-index'", 500);
+			$("body").fadeIn(800);
+		});
+	});
+</script>
+<style>
+	.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+		border-radius: 6px 6px 0 0;
+		border-top-color: #03a9f5;
+    	border-bottom: none;
+	}
+	
+	.el-breadcrumb__item {
+		box-sizing: border-box;
+		width: 100%;
+	}
+	
+	.el-breadcrumb__item__inner,
+	.el-breadcrumb__item__inner a {
+		transition: color .15s linear;
+		color: #48576a;
+	}
+	
+	.el-breadcrumb {
+		font-size: 13px;
+		line-height: 1;
+		display: block;
+    	padding: 12px 0 10px 10px;
+		border-bottom: 1px solid #efefef;
+		width: 100%;
+	}
+	
+	.el-breadcrumb__separator {
+		margin: 0 8px;
+		color: #bfcbd9;
+	}
+	
+	.all-right .student {
+	    background: #F1F1F1;
+	    margin-top: 0px;
+	}
+	
+	.user_info li{
+		width: 100%;
+    	height: auto;
+	}
+	
+	.user_info label{
+		width: 50% !important;
+	}
+	
+	.user_info li span{
+		display: inline-block;
+	    width: 50%;
+	    height: 20px;
+	}
+	
+	.all-right .student .contents {
+	    background-color: #fff;
+	    margin-top: 0px;
+	}
+	
+	.all-right {
+	    padding: 15px 0px 10px 0;
+	    width: calc(100% - 231px);
+	}
+	
+	.fixed-table-container tbody td .th-inner, .fixed-table-container thead th .th-inner{
+		padding: 0;
+	}
+
+	.bootstrap-table .table:not(.table-condensed) > tbody > tr > td, 
+	.bootstrap-table .table:not(.table-condensed) > tbody > tr > th {
+	    height: 25px!important;
+	    line-height: 25px!important;
+	    padding: 4px 0px!important;
+	}
+</style>
+<div class="all">
+	<div class="right-content">
+		<div class="el-breadcrumb" style="border-bottom: 1px solid #ddd;">
+			<span class="el-breadcrumb__item">
+				<a href="javascript:void(0)"><span id="home1" class="el-breadcrumb__item__inner"><b>首页</b></span></a>
+				<span class="el-breadcrumb__separator">/</span>
+				<span class="el-breadcrumb__item__inner">成绩查询</span>
+			</span>
+		</div>
+		<div class="student" style="overflow-y: auto; overflow-x: hidden;">
+			<div class="contents">
+				<label style="line-height: 24px;margin: 10px 0 7px 14px;">
+					<b><font size="3">使用提示：</font></b><br/>
+					<font size="2">1.学年选所有，学期选所有即可查询所有科目的成绩。</font><br/>
+					<font size="2">2.在成绩查询结果表格，点击该科目的分数，即可查询该科目的具体分项成绩。比如平时分+期末分，以及具体权值。</font><br/>
+				</label>
+				<div class="right-content-search" style="padding: 10px 10px 0 10px; border-top: 1px solid #DBDBDB;border-bottom: 1px solid #DBDBDB;">
+					<div ng-hide="isHideSearchForm">
+						<form name="examPrientingSearchForm" class="form-horizontal search-form">
+							<div class="row">
+								<div class="form-group col-xs-3">
+									<label class="col-xs-6 control-label">学年学期：</label>
+									<div class="col-xs-6">
+			                            <select ng-model="examPrienting.semesterId"  id="semesterId" name="semesterId" ui-jq="chosen" ui-options="{search_contains: true}" class="form-control">
+			                                <option value="">==请选择==</option>
+			                            </select>
+									</div>
+								</div>
+								<div class="form-group col-xs-3">
+									<label class="col-xs-6 control-label">类别：</label>
+									<div class="col-xs-6">
+			                            <select ng-model=""  id="" name="" ui-jq="chosen" ui-options="{search_contains: true}" class="form-control">
+			                                <option value="">==请选择==</option>
+			                                <option value="1">必修</option>
+			                            </select>
+									</div>
+								</div>
+								<div class="col-xs-3">
+									<!-- 点击触发 ng-submit 事件 -->
+									<button type="submit" class="col-xs-4 btn btn-info" ng-click="searchSubmit(examPrientingSearchForm)">
+										<span class="fa fa-search refer btn-icon-padding"></span>查询
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				
+				<div class="right-content-table">
+			        <div id="toolbar1" class="btn-group">
+			            <div style="line-height: 40px;">
+			                <font size="3" style="margin-right: 35px;">总学分：<font color="red">{{coverTotalCredit}}</font></font>
+			                <font size="3" style="margin-right: 35px;">总绩点：<font color="red">{{coverTotalPoint}}</font></font>
+			                <span ng-repeat="modularName in coverModularNames">
+					        	<input type="checkbox" name="checkpig" ng-model="modularName[2]" ng-click="checkearItemFun(modularName, $index)"><!--  ng-true-value="'Yes'" ng-false-value="'No'" -->
+					        	<font size="3" style="margin-right: 15px; padding-left: 5px;">{{modularName[0]}}</font>
+					        </span>
+			            </div>
+			        </div>
+					<table id="examPrientingTable1" ui-jq="bootstrapTable" ui-options="examPrientingTable1" class="table table-responsive"></table>
+			        
+			        
+			        <div id="toolbar2" class="btn-group">
+			            <div style="line-height: 40px;">
+			                <font size="3" style="margin-right: 35px;">学分总览</font>
+			            </div>
+			        </div>
+					<table id="examPrientingTable2" ui-jq="bootstrapTable" ui-options="examPrientingTable2" class="table table-responsive"></table>
+					
+			        <!--<div id="toolbar3" class="btn-group">
+			            <div style="line-height: 40px;">
+			                <font size="3" style="margin-right: 35px;">成绩分布</font>
+			                <!--<button size="3" style="margin-right: 35px;" ng-click="changData()">成绩分布</button>
+			            </div>
+			        </div>-->
+		            <!--<div class="col-md-12" style="height: 165px; ">
+						<div e-chart ui-options="
+							{
+							    title : {
+									show: false,
+							        text: '成绩分布',
+							        subtext: '纯属虚构',
+							        x:'center'
+							    },
+								tooltip: {
+									show: true,
+							        trigger: 'item',
+							        formatter: '123'
+								},
+					            legend: {
+							        x : 'center',
+							        y : 'bottom',
+							        data:['90-94','95-100','85-90','80-84','75-79','70-74','<60','65-70','60-64']
+					            },
+							    toolbox: {
+							        show : false,
+							        feature : {
+							            mark : {show: true},
+							            dataView : {show: true, readOnly: false},
+							            magicType : {
+							                show: true, 
+							                type: ['pie', 'funnel'],
+							                option: {
+							                    funnel: {
+							                        x: '25%',
+							                        width: '50%',
+							                        funnelAlign: 'left',
+							                        max: 1548
+							                    }
+							                }
+							            },
+							            restore : {show: true},
+							            saveAsImage : {show: true}
+							        }
+							    },
+							    calculable : true,
+							    series : [
+							        {
+							            name:'访问来源',
+							            type:'pie',
+							            radius : '55%',
+							            center: ['50%', '60%'],
+							            data: {{echartDatas}}
+							        }
+							    ]
+					       	}" 
+				            style="height: 360px;width: 100%;"></div>
+		           </div>-->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer footer3">
+		<p>版权所有<span>&copy;</span>北京电影学院 <span>BEIJING FILE ACADEMY</span></p>
+	</div>
+</div>
+
+

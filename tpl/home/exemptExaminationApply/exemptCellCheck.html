@@ -1,0 +1,152 @@
+<style>
+	.modal-footer {
+		border-top: 1px #e5e5e5 solid!important;
+		padding: 10px;
+	}
+	
+	.nav-tabs>li.active>a,
+	.nav-tabs>li.active>a:hover,
+	.nav-tabs>li.active>a:focus {
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+		border-radius: 6px 6px 0 0;
+		border-top-color: #03a9f5;
+		border-bottom: none;
+	}
+	
+	.el-breadcrumb__item {
+		box-sizing: border-box;
+		width: 100%;
+	}
+	
+	.el-breadcrumb__item__inner,
+	.el-breadcrumb__item__inner a {
+		transition: color .15s linear;
+		color: #48576a;
+	}
+	
+	.el-breadcrumb {
+		font-size: 13px;
+		line-height: 1;
+		display: block;
+    	padding: 5px 0 10px 0;
+		border-bottom: 1px solid #efefef;
+		width: 100%;
+	}
+	
+	.el-breadcrumb__separator {
+		margin: 0 8px;
+		color: #bfcbd9;
+	}
+	
+	html, body, .module {
+		width: 100%;
+		/*height: 96%;*/
+	}
+	
+	.row {
+		margin-right: 0px;
+		margin-left: 0px;
+	}
+	
+	.modal_t {
+		background: #e4e4e4;
+	}
+</style>
+<div class="all">
+	<div class="right-content">
+		<div class="modal_t" style="padding: 10px;position: relative;">
+			<span class="el-breadcrumb__item__inner">查看免考申请</span>
+			<span ng-click="close()" style="cursor: pointer;position: absolute;right: 15px;top: 10px;">X</span>
+		</div>
+		<div class="right-content-search">
+			<div ng-hide="shIsHideSearchForm">
+				<form name="shpyfabzkzsh_form" class="form-horizontal search-form">
+					<div class="row">
+						<div class="col-xs-4">
+							<label class="col-xs-6" style="text-align: right;padding: 5px;">学号：</label>
+							<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellCheck.studentNum}}</label>
+						</div>
+						<div class="col-xs-4">
+							<label class="col-xs-6" style="text-align: right;padding: 5px;">姓名：</label>
+							<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellCheck.studentName}}</label>
+						</div>
+						<div class="col-xs-4">
+							<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">学生所在院系：</label>
+							<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellCheck.college}}</label>
+						</div>
+					</div>
+					<div class="row" style="padding-top: 15px;">
+						<div class="col-xs-4">
+							<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">班级：</label>
+							<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellCheck.className}}</label>
+						</div>
+						<div class="col-xs-4">
+							<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">申请免考课程：</label>
+							<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellCheck.courseName}}</label>
+						</div>
+						<div class="col-xs-4">
+							<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">开课单位：</label>
+							<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellCheck.dept}}</label>
+						</div>
+					</div>
+
+					<div class="row" style="padding-top: 15px;">
+						<div class="col-xs-4">
+							<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">学分：</label>
+							<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellCheck.credit}}</label>
+						</div>
+						<div class="col-xs-4">
+							<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">课程性质：</label>
+							<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellCheck.courseQuality}}</label>
+						</div>
+						<div class="col-xs-4">
+							<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">任课教师：</label>
+							<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellCheck.teacherName}}</label>
+						</div>
+					</div>
+					<div class="row" style="padding-top: 15px;">
+						<div class="col-xs-4">
+							<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">上课时间：</label>
+							<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellCheck.classTime}}</label>
+						</div>
+						<div class="col-xs-4">
+							<label class="col-xs-6 control-label" style="text-align: right;padding: 5px;">考核方式：</label>
+							<label class="col-xs-6" style="text-align: left;padding: 5px;">{{exemptCellCheck.examWay}}</label>
+						</div>
+						<div class="col-xs-4">
+						</div>
+					</div>
+					<div class="row" style="padding-top: 15px;">
+						<div class="col-xs-12">
+							<label class="col-xs-2 control-label" style="text-align: right;padding: 5px 15px 5px 5px;">附件：</label>
+							<div class="col-xs-8" style="padding: 0px;">
+								<input type="text" ng-model="exemptCellCheck.fileId" id="" class="form-control" />
+							</div>
+		        			<buttom type="button" class="col-xs-1 btn btn-info" style="float: right;" ng-click="checkField()">下载附件</buttom>
+						</div>
+			        </div>
+			        <div class="row" style="padding-top: 15px;margin: 10px 0; border-top: 1px solid #ccc;">
+						<div class="col-xs-12">
+		        			<label class="col-xs-2 control-label" style="text-align: right;padding: 5px 15px 5px 5px;">申请免考事由：</label>
+							<div class="col-xs-9" style="padding: 0px;width: 83%;float: left;">
+								<textarea class="form-control" rows="5" ng-model="exemptCellCheck.reason" style="border-radius: 3px;resize: none;overflow-y: scroll;"></textarea>
+							</div>
+						</div>
+			        </div>
+			        <div class="row" style="padding-top: 15px;">
+						<div class="col-xs-12">
+		        			<label class="col-xs-2 control-label" style="text-align: right;padding: 5px 15px 5px 5px;">审批意见：</label>
+							<div class="col-xs-9" style="padding: 0px;width: 83%;float: left;">
+								<textarea class="form-control" rows="5" ng-model="exemptCellCheck.buseinssId" style="border-radius: 3px;resize: none;overflow-y: scroll;" disabled="disabled"></textarea>
+							</div>
+						</div>
+			        </div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-default" type="button" ng-click="close()">关闭</button>
+	</div>
+</div>
